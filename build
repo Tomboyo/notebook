@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ ! -d ./target ]] ; then
+  mkdir target
+fi
+
+asciidoctor -r asciidoctor-diagram src/adoc/index.adoc -o target/index.html

@@ -1,0 +1,12 @@
+= The Fifth Discipline
+
+:leveloffset: +1
+
+include::organizational-learning-disabilities/index.adoc[]
+
+include::the-laws-of-the-fifth-discipline/index.adoc[]
+
+include::archetypes/index.adoc[]
+
+:leveloffset: -1
+
