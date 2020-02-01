@@ -1,7 +1,0 @@
-= The laws of the Fifth Discipline
-
-:leveloffset: +1
-
-include::todays-problems-come-from-yesterdays-solutions.adoc[]
-
-:leveloffset: -1

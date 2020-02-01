@@ -1,7 +1,0 @@
-= Archetypes
-
-:leveloffset: +1
-
-include::limits-to-growth.adoc[]
-
-:leveloffset: -1

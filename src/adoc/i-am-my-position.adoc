@@ -1,0 +1,7 @@
+= I am my position
+
+From <<the-fifth-discipline#the-fifth-discipline, The Fifth Discipline, page 18>>
+
+When we focus only on our small role, we fail to see how our work fits into a larger picture and how our decisions influence the greater system.
+
+When things go wrong, this restricted vantage point complicates understanding. We settle with "someone screwed up:" <<the-enemy-is-out-there#the-enemy-is-out-there, the enemy is out there>>.

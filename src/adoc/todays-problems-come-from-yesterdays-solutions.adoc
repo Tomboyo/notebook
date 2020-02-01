@@ -1,0 +1,3 @@
+= Today's problems come from yesterday's "solutions"
+
+Our solutions sometimes only shift problems from one place to another. These shifts go undetected due to long lapses between actions and consequences (see <<the-delusion-of-learning-from-experience#the-delusion-of-learning-from-experience,the delusion of learning from experience>>), especially since the people who "solve" problems are frequently not the people who inherit those consequences. This disconnect between cause and effect prevents those involved from recognizing the larger problem, especially when those involved lack the long-term perspective necessary to identify the distant factors (<<the-fixation-on-events#the-fixation-on-events,the fixation on events>>).

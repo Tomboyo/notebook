@@ -1,7 +1,12 @@
 #!/bin/bash
 
+set -eo pipefail
+
 if [[ ! -d ./target ]] ; then
-  mkdir target
+    mkdir target
 fi
 
-asciidoctor -r asciidoctor-diagram src/adoc/index.adoc -o target/index.html
+
+find src/adoc -type f -exec \
+    asciidoctor -r asciidoctor-diagram -D target {} ';'
+

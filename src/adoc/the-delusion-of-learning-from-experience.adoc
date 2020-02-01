@@ -3,4 +3,4 @@ Page 23
 
 We can learn from our experiences, but we are limited. When the consequences of our actions are only obvious long after our actions, it is harder to correlate the two, which impairs learning. A challenge we face is that many of our most important decisions are far removed from their consequences, preventing us from learning from our successes or our mistakes.
 
-Significantly, when our efforts have negative consequences that are far-removed from our actions, we may wrongly attribute those consequences to <<The enemy is out there,the enemy out there>>. Our <<The fixation on events,fixation on events>> inhibits us further from uncovering these distant consequences.
+Significantly, when our efforts have negative consequences that are far-removed from our actions, we may wrongly attribute those consequences to <<the-enemy-is-out-there#the-enemy-is-out-there,the enemy out there>>. Our <<the-fixation-on-events#the-fixation-on-events,fixation on events>> inhibits us further from uncovering these distant consequences.
