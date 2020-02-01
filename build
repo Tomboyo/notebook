@@ -2,6 +2,18 @@
 
 set -eo pipefail
 
+function usage {
+    echo "build [-c|--clean] [-s|--serve] [-h|--help]"
+    echo
+    echo "Build the project."
+    echo
+    echo "  -c, --clean: Delete the target directory before compiling."
+    echo "  -s, --serve: Start a python http.server instance in the target "
+    echo "               directoy to serve compiled documents."
+    echo "  -h, --help:  Display this message."
+    echo
+}
+
 BASEDIR=$(realpath $(dirname "$0"))
 BINDIR="$BASEDIR/bin"
 
@@ -10,7 +22,7 @@ SERVE=""
 while [[ $# -gt 0 ]] ; do
     key="$1"
     case $key in
-        --clean)
+        -c|--clean)
             CLEAN="true"
             shift
             ;;
@@ -18,8 +30,13 @@ while [[ $# -gt 0 ]] ; do
             SERVE="true"
             shift
             ;;
+        -h|--help)
+            usage
+            exit
+            ;;
         *)
             echo "unexpected argument $1"
+            usage
             exit 1
             ;;
     esac
