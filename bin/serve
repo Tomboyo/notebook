@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+#
+# Starts a python file server in the target directory so we can conveniently
+# peruse compiled asciidoc html documents.
+#
+# Remember, according to the python documentation:
+#   "http.server is not recommended for production. It only implements basic
+#   security checks."
+
+BINDIR=$(realpath $(dirname "$0"))
+TARGET=$(realpath "$BINDIR/../target/")
+
+python3 -m http.server --directory "$TARGET"

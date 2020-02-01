@@ -3,13 +3,19 @@
 set -eo pipefail
 
 BASEDIR=$(realpath $(dirname "$0"))
+BINDIR="$BASEDIR/bin"
 
 CLEAN=""
+SERVE=""
 while [[ $# -gt 0 ]] ; do
     key="$1"
     case $key in
         --clean)
             CLEAN="true"
+            shift
+            ;;
+        -s|--serve)
+            SERVE="true"
             shift
             ;;
         *)
@@ -26,8 +32,17 @@ if [[ $CLEAN == "true" ]] ; then
 fi
 
 echo "BUILD..."
-if [[ ! -d ./target ]] ; then
-    mkdir target
+if [[ ! -d ./target/pre ]] ; then
+    mkdir -p target/pre
 fi
-find src/adoc -type f -exec \
+cp src/adoc/*.adoc target/pre
+echo "PRECOMPILE..."
+bin/precompile
+echo "COMPILE..."
+find target/pre -type f -exec \
     asciidoctor -r asciidoctor-diagram -D target {} ';'
+
+if [[ $SERVE == "true" ]] ; then
+    echo "SERVE..."
+    "$BINDIR/serve"
+fi

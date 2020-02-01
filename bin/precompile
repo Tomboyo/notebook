@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Identifies all documents which reference other documents. The output is fed to
+# append-references.py, which generates a References section on precompiled
+# documents under /target/pre.
+#
+# See bin/append-references.py
+
+BINDIR=$(realpath "$(dirname "$0")/..")
+SRCDIR="$BINDIR/src/adoc"
+
+grep -oER '<<[^>#]+' "$SRCDIR" \
+| awk -F '.adoc:<<|src/adoc/' '{ print $2 " " $3 }' \
+| xargs python3 bin/append-references.py
