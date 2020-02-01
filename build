@@ -1,6 +1,10 @@
 #!/bin/bash
 
-set -eo pipefail
+set -euo pipefail
+
+BASEDIR="$(realpath $(dirname "$0"))"
+TARGETDIR="$BASEDIR/target"
+BINDIR="$BASEDIR/bin"
 
 function usage {
     echo "build [-c|--clean] [-s|--serve] [-h|--help]"
@@ -14,8 +18,28 @@ function usage {
     echo
 }
 
-BASEDIR=$(realpath $(dirname "$0"))
-BINDIR="$BASEDIR/bin"
+function clean {
+    echo "CLEAN $TARGETDIR"
+    rm -rf "$TARGETDIR"
+}
+
+function build {
+    echo "BUILD"
+    if [[ ! -d ./target/pre ]] ; then
+        mkdir -p target/pre
+    fi
+    cp src/adoc/*.adoc target/pre
+
+    echo "PRECOMPILE"
+    bin/precompile
+
+    echo "COMPILE"
+    find target/pre -type f -exec \
+        asciidoctor -r asciidoctor-diagram -D target {} ';'
+    
+    echo "POSTCOMPILE"
+    rm -rf "$TARGETDIR/pre"
+}
 
 CLEAN=""
 SERVE=""
@@ -43,23 +67,12 @@ while [[ $# -gt 0 ]] ; do
 done
 
 if [[ $CLEAN == "true" ]] ; then
-    echo "CLEAN $BASEDIR/target..."
-
-    rm -rf "$BASEDIR/target"
+    clean
 fi
 
-echo "BUILD..."
-if [[ ! -d ./target/pre ]] ; then
-    mkdir -p target/pre
-fi
-cp src/adoc/*.adoc target/pre
-echo "PRECOMPILE..."
-bin/precompile
-echo "COMPILE..."
-find target/pre -type f -exec \
-    asciidoctor -r asciidoctor-diagram -D target {} ';'
+build
 
 if [[ $SERVE == "true" ]] ; then
-    echo "SERVE..."
+    echo "SERVE"
     "$BINDIR/serve"
 fi
