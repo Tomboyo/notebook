@@ -7,14 +7,18 @@ TARGETDIR="$BASEDIR/target"
 BINDIR="$BASEDIR/bin"
 
 function usage {
-    echo "build [-c|--clean] [-s|--serve] [-h|--help]"
+    echo "build [-c|--clean] [-s|--serve] [--preserve-pre]"
+    echo "   or [-h|--help]"
     echo
     echo "Build the project."
     echo
-    echo "  -c, --clean: Delete the target directory before compiling."
-    echo "  -s, --serve: Start a python http.server instance in the target "
-    echo "               directoy to serve compiled documents."
-    echo "  -h, --help:  Display this message."
+    echo "  -c, --clean:   Delete the target directory before compiling."
+    echo "  -s, --serve:   Start a python http.server instance in the target "
+    echo "                 directoy to serve compiled documents."
+    echo " --preserve-pre: Do not delete the target/pre directory after"
+    echo "                 compilation. (Useful for debugging.)"
+    echo
+    echo "  -h, --help:    Display this message and exit."
     echo
 }
 
@@ -37,21 +41,28 @@ function build {
     find target/pre -type f -exec \
         asciidoctor -r asciidoctor-diagram -D target {} ';'
     
-    echo "POSTCOMPILE"
-    rm -rf "$TARGETDIR/pre"
+    if [[ ! "$PRESERVE_PRE" == "true" ]] ; then
+        echo "POSTCOMPILE"
+        rm -rf "$TARGETDIR/pre"
+    fi
 }
 
 CLEAN=""
 SERVE=""
+PRESERVE_PRE=""
 while [[ $# -gt 0 ]] ; do
     key="$1"
-    case $key in
+    case "$key" in
         -c|--clean)
             CLEAN="true"
             shift
             ;;
         -s|--serve)
             SERVE="true"
+            shift
+            ;;
+        --preserve-pre)
+            PRESERVE_PRE="true"
             shift
             ;;
         -h|--help)
@@ -66,13 +77,13 @@ while [[ $# -gt 0 ]] ; do
     esac
 done
 
-if [[ $CLEAN == "true" ]] ; then
+if [[ "$CLEAN" == "true" ]] ; then
     clean
 fi
 
 build
 
-if [[ $SERVE == "true" ]] ; then
+if [[ "$SERVE" == "true" ]] ; then
     echo "SERVE"
     "$BINDIR/serve"
 fi

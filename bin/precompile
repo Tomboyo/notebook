@@ -2,7 +2,8 @@
 #
 # Identifies all documents which reference other documents. The output is fed to
 # append-references.py, which generates a References section on precompiled
-# documents under /target/pre.
+# documents under /target/pre. It also generates a directed graph of the
+# notebook.
 #
 # See bin/append-references.py
 

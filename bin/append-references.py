@@ -3,6 +3,10 @@
 # Consumes a list of pairs of arguments indcating that the first document makes
 # a reference to the second, then appends a References section to the end of any
 # document that was referenced indicating what referenced it.
+#
+# Also accumulates those references into target/reference-graph.adoc, which is
+# compiled into a directed graph of the notebook.
+#
 # See bin/precompile
 
 import sys
@@ -24,3 +28,21 @@ for k, v in mapping.items():
         f.write("\n== References\n")
         for el in v:
             f.write(f"Referenced by <<{el}#{el},{el}>>\n\n")
+
+# A very dumb way to generate a directed graph: we compile the list of
+# references into a directed graph dot markup, replying on the asciidcotr plugin
+# for diagrams to create the finished product.
+#
+# There is a graphviz lib for python. We should probably go that route later.
+graphfile = "target/pre/reference-graph.adoc"
+with open(graphfile, 'w') as f:
+    f.write("[graphviz,reference-graph,png]\n"
+            "----\n"
+            "digraph {\n")
+    
+    for fromnode, v in mapping.items():
+        for tonode in v:
+            f.write(f"    \"{fromnode}\" -> \"{tonode}\";\n")
+    
+    f.write("}\n"
+            "----")
