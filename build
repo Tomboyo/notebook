@@ -2,11 +2,32 @@
 
 set -eo pipefail
 
+BASEDIR=$(realpath $(dirname "$0"))
+
+CLEAN=""
+while [[ $# -gt 0 ]] ; do
+    key="$1"
+    case $key in
+        --clean)
+            CLEAN="true"
+            shift
+            ;;
+        *)
+            echo "unexpected argument $1"
+            exit 1
+            ;;
+    esac
+done
+
+if [[ $CLEAN == "true" ]] ; then
+    echo "CLEAN $BASEDIR/target..."
+
+    rm -rf "$BASEDIR/target"
+fi
+
+echo "BUILD..."
 if [[ ! -d ./target ]] ; then
     mkdir target
 fi
-
-
 find src/adoc -type f -exec \
     asciidoctor -r asciidoctor-diagram -D target {} ';'
-
