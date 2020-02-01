@@ -1,5 +1,6 @@
 = The illusion of taking charge
-Page 20
+
+From <<the-fifth-discipline#the-fifth-discipline, The Fifth Discipline, page 20>>
 
 We want to avoid reacting to events. Instead, we want to mitigate problems before they grow complex or costly. If we find and address such problems before they grow too large to manage, so the thinking goes, we can avoid most major problems. Thus, we try to act "proactively." Frequently, however, our proactive decisions are merely reactions to <<the-enemy-is-out-there#the-enemy-is-out-there,the enemy out there>>. That is, we try to "get them" before they "get us."
 

@@ -1,4 +1,5 @@
 = The boiled frog
-Page 22
+
+From <<the-fifth-discipline#the-fifth-discipline, The Fifth Discipline, page 22>>
 
 Though we can quickly recognize pronounced threats, some problems grow gradually and insidiously. Recall the fate of a slowly-boiled frog, unable to recognize the gradual climb in temperatures that ultimately cook it alive. To avoid the same fate, we must pay attention to gradual changes in our circumstances so that we can extract ourselves from harm's way.
